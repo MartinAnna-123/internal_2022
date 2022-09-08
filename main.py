@@ -26,14 +26,19 @@ def book_info ():
     print("you didn't type anything correctly")
     book_info()
 
+def dict_zip ():
+  keys = ["title", "author", "year", "genre", "pages"]
+  title = input("Enter books title: ")
+  author = input ("Enter books author: ")
+  year = input ("Enter books year of publishing: ")
+  genre = input ("what genre is {}: ".format(title))
+  pages = input ("how many pages does {} have?: ".format(title))
+  values = [str(title), str(author), str(year), str(genre), str(pages)]
+  data = dict(zip(keys,values))
+  print(data)
 
-bookdict = {
-  "title": "Hunger Games", "Little Women"
-  "author": "Suzanne Collins", "louisa May Alcott"
-  "year": 2008, 1868,
-  "genre": "dystopian", "coming-of-age"
-  "pages": 600, 670
-}
+
+
 
 bookTitles = ["Hunger Games", "Little Women"] 
 bookAuthors = ["Suzanne Collins", "Lousia May Alcott"]
@@ -41,28 +46,29 @@ bookYear = ["2008","1868"]
 bookGenre = ["dystopian", "coming-of-age"]
 bookPages = ["600", "670"]
 
-print("lets add some more books to the list")
-book_list()
+dict_zip()
+# print("lets add some more books to the list")
+# book_list()
 
 
 
-print ("Title: {}, Author: {}, Published: {}, Genre: {}, Pages: {}," .format(bookTitles, bookAuthors, bookYear, bookGenre, bookPages ))
+# print ("Title: {}, Author: {}, Published: {}, Genre: {}, Pages: {}," .format(bookTitles, bookAuthors, bookYear, bookGenre, bookPages ))
 
-repeat = True
-while repeat == True:
-  question = input("do you want to add a book to the list?")
-  if question == "yes":
-    book_list()
-  else:
-    question2 = input("do you want to find out information about a book?")
-    if question2  == "yes":
-      book = input("what book do  you want to know information about?")
-      book_info()
-    else:
-      "ok"
-      repeat = False
+# repeat = True
+# while repeat == True:
+#   question = input("do you want to add a book to the list?")
+#   if question == "yes":
+#     book_list()
+#   else:
+#     question2 = input("do you want to find out information about a book?")
+#     if question2  == "yes":
+#       book = input("what book do  you want to know information about?")
+#       book_info()
+#     else:
+#       "ok"
+#       repeat = False
     
 
-print ("Title: {}, Author: {}, Published: {}, Genre: {}, Pages: {}," .format(bookTitles, bookAuthors, bookYear, bookGenre, bookPages ))
+# print ("Title: {}, Author: {}, Published: {}, Genre: {}, Pages: {}," .format(bookTitles, bookAuthors, bookYear, bookGenre, bookPages ))
 
 
