@@ -32,6 +32,7 @@ def book_pages():
     books.update(entered)
   elif (choice1 == "Genre") or (choice1 == "genre"):
     entered = input("enter the genre of {}".format(bookChoice))
+    
     books.update(entered)
   elif (choice1 == "Pages") or (choice1 == "pages"):
     entered = input("enter the number of pages in {}".format(bookChoice))
@@ -45,7 +46,7 @@ def book_pages():
 
 
 # function for printing out the updated number of pages of a book - Press c
-
+# finding information about a certain section of a book. for example the author.
 def book_page_print ():
   a = dictionary['title'].get(str(book))
   print(a)
