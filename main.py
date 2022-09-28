@@ -14,55 +14,56 @@ def book_add():
   
 
 
-# function for printing out all books information  - press b 
+# function for printing out all books information  - press B
 
 def book_info():
  print(books)
 
 
-# function for modifying number of pages of a book  
+# function for modifying number of pages of a book  - press C
 def book_pages():
-  bookChoice = input("what book do you want to add info too?")
-  choice1 = input("what section for {} do you want to add information too?".format(bookChoice))
-  if (choice1 == "Author") or (choice1 == "author"):
-    entered = input("enter the author of {}".format(bookChoice))
-    books.update(entered)
-  elif (choice1 == "Year") or (choice1 == "year"):
-    entered = input("enter the year {} was published".format(bookChoice))
-    books.update(entered)
-  elif (choice1 == "Genre") or (choice1 == "genre"):
-    entered = input("enter the genre of {}".format(bookChoice))
-    
-    books.update(entered)
-  elif (choice1 == "Pages") or (choice1 == "pages"):
-    entered = input("enter the number of pages in {}".format(bookChoice))
-    books.update(entered)
+  bookChoice = input("what book do you want to adjust the pages of?")
+  print('The '+ bookChoice + ' has ' + books.get(str(bookChoice)).get('pages') + ' pages')
+  pageChange = input("what do you want to change the pages to? please enter a number")
+
+  if pageChange is int:
+    books[str(bookChoice)]['pages'] = int(pageChange)
   else:
-    print("you didn't type anything correctly")
-    book_info()
-    
-  print('this is the updated version of the pages in your book')
-  book_page_print()
+    print('Your input was not valid. Try again')
+    book_pages()
+
+  print('{} the updated version of the pages in your book'.format(books[str(bookChoice)]))
+  
 
 
-# function for printing out the updated number of pages of a book - Press c
-# finding information about a certain section of a book. for example the author.
+# function for printing out the updated number of pages of a book
+
 def book_page_print ():
-  a = dictionary['title'].get(str(book))
-  print(a)
-  a = int(a)
-  choice = input("what do you want to know about {}. Please type: Author, Year,  Genre  or Pages: ".format(str(book)))
-  if choice == "Author" or choice == "author":
-    print("the author of" + str(book) + "is {}".format(dictionary.get(a)))
-  elif choice == "Year" or choice == "year":
-    print("the year " + str(book) + " was published was {}".format(dictionary['year'].get(a)))
-  elif choice == "Genre" or choice == "genre":
-    print("the genre of " + str(book) + " is {}".format(dictionary['genre'].get(a)))
-  elif choice == "Pages" or choice == "pages":
-    print(str(book) + "has {} pages".format(dictionary['pages'].get(a)))
-  else:
-    print("you didn't type anything correctly")
-    book_info()
+  book = input("please type a book title that you want to know the number of pages\n")
+  page_print = True 
+  while page_print == True:
+    if str(book) in books:
+      a = books[str(book)]['pages']
+      print(a)
+      page_print = False
+    else:
+      print('INVALID. Please follow the instructions')
+      book_page_print ()
+
+
+  # a = int(a)
+  # choice = input("what do you want to know about {}. Please type: Author, Year,  Genre  or Pages: ".format(str(book)))
+  # if choice == "Author" or choice == "author":
+  #   print("the author of" + str(book) + "is {}".format(dictionary.get(a)))
+  # elif choice == "Year" or choice == "year":
+  #   print("the year " + str(book) + " was published was {}".format(dictionary['year'].get(a)))
+  # elif choice == "Genre" or choice == "genre":
+  #   print("the genre of " + str(book) + " is {}".format(dictionary['genre'].get(a)))
+  # elif choice == "Pages" or choice == "pages":
+  #   print(str(book) + "has {} pages".format(dictionary['pages'].get(a)))
+  # else:
+  #   print("you didn't type anything correctly")
+  #   book_info()
 
 
 # main function - contains the menu 
@@ -70,7 +71,7 @@ def main ():
   quit = True 
   print('what do you want to do?')
   while quit == True:
-    menu = input('a) Add a book to the library database \n b) Print all book information \n c) adjust the pages in you chosen book \n d) Quit \n')
+    menu = input('a) Add a book to the library database \n b) Print all book information \n c) Modify the pages in your chosen book \n d) print the amount of pages in your chosen book \n e) Quit \n')
     if menu == 'a':
       book_add()
     elif menu == 'b':
@@ -78,11 +79,13 @@ def main ():
     elif menu =='c':
       book_pages()
     elif menu == 'd':
+      book_page_print ()
+    elif menu == 'e':
       quit == False
 
 # the dictionary contains all the information entered in the program about the books 
 books = {
-  'Hunger Games':{
+  'hunger games':{
     'author': 'Suzanne Collins',
     'year': '2008',
     'genre': 'Dystopian',
@@ -151,3 +154,19 @@ print(dictionary['Hunger Games']['author'])
 # print ("Title: {}, Author: {}, Published: {}, Genre: {}, Pages: {}," .format(bookTitles, bookAuthors, bookYear, bookGenre, bookPages ))
 
 
+# if (choice1 == "Author") or (choice1 == "author"):
+#     entered = input("enter the author of {}".format(bookChoice))
+#     books.update(entered)
+#   elif (choice1 == "Year") or (choice1 == "year"):
+#     entered = input("enter the year {} was published".format(bookChoice))
+#     books.update(entered)
+#   elif (choice1 == "Genre") or (choice1 == "genre"):
+#     entered = input("enter the genre of {}".format(bookChoice))
+    
+#     books.update(entered)
+#   elif (choice1 == "Pages") or (choice1 == "pages"):
+#     entered = input("enter the number of pages in {}".format(bookChoice))
+#     books.update(entered)
+#   else:
+#     print("you didn't type anything correctly")
+#     book_info()
