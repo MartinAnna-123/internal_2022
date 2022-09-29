@@ -2,13 +2,16 @@
 def book_add():
   keys = ["author", "year", "genre", "pages"]
   title = input("Enter books title: ")
+  titleEdited = title.title()
   author = input ("Enter books author: ")
+  authorEdited = author.title()
   year = input ("Enter books year of publishing: ")
   genre = input ("what genre is {}: ".format(title))
-  pages = input ("how many pages does {} have?: ".format(title))
-  values = [str(author), str(year), str(genre), str(pages)]
+  genreEdited = genre.capitalize()
+  pages = input ("how many pages does {} have?: ".format(titleEdited))
+  values = [str(authorEdited), str(year), str(genreEdited), str(pages)]
   data = dict(zip(keys,values))
-  finaldata  = {title : data}
+  finaldata  = {titleEdited : data}
   print(finaldata)
   books.update(finaldata)
   
@@ -21,21 +24,38 @@ def book_info():
 
 # function for modifying number of pages of a book  - press C
 def book_pages():
-  bookChoice = input("what book do you want to adjust the pages of?")
-  print('The '+ bookChoice + ' currently has ' + books.get(str(bookChoice)).get('pages') + ' pages')
-
-  if bookChoice in books:
+  valid = False
+  while valid == False:
+    bookChoice = input("what book do you want to adjust the pages of?")
+    bookChoiceEdited = bookChoice.title()
+    try:
+      bookChoicePages = books.get(str(bookChoiceEdited)).get('pages')
+      valid = True
+    except AttributeError:
+        print("Oops, the book you have entered is not in the system - try again")
+  
+  print('The '+ bookChoiceEdited + ' currently has ' + bookChoicePages + ' pages')
+  
+  valid = False
+  while valid == False:
     newPages = input("what do you want to change the pages to? please enter a number")
-    books[bookChoice]['pages'] = newPages
-    # if statement adjusting the output depending on the number the user enters
-    if int(newPages) > 1:
-      print(bookChoice, "now has", newPages, "Pages")
-    elif int(newPages) == 1:
-      print(bookChoice, "now has", newPages, "Page")
-    else:
-      print(bookChoice, "now has", newPages, "Pages")
+    try:
+      int(newPages)
+      valid = True
+    except ValueError:
+        print("Oops, that was not an integer - try again")
+        
+  books[bookChoiceEdited]['pages'] = newPages
+
+# if statement adjusting the output depending on the number the user enters
+  if int(newPages) > 1:
+    print(bookChoiceEdited, "now has", newPages, "Pages")
+  elif int(newPages) == 1:
+    print(bookChoiceEdited, "now has", newPages, "Page")
   else:
-    print(bookChoice, " does not exist.")
+    print(bookChoiceEdited, "now has", newPages, "Pages")
+  # else:
+  #   print(bookChoice, " does not exist.")
 
   
   
@@ -61,12 +81,13 @@ def book_page_print ():
 
 # the dictionary contains all the information entered in the program about the books 
 books = {
-  'hunger games':{
+  'Hunger Games':{
     'author': 'Suzanne Collins',
     'year': '2008',
     'genre': 'Dystopian',
     'pages': '600',
   }
+  
 }
 
 # main function - contains the menu 
