@@ -27,6 +27,7 @@ def book_pages():
   if bookChoice in books:
     newPages = input("what do you want to change the pages to? please enter a number")
     books[bookChoice]['pages'] = newPages
+    # if statement adjusting the output depending on the number the user enters
     if int(newPages) > 1:
       print(bookChoice, "now has", newPages, "Pages")
     elif int(newPages) == 1:
@@ -48,6 +49,7 @@ def book_page_print ():
   while page_print == True:
     if str(book) in books:
       a = books[str(book)]['pages']
+      # if statement adjusting the output depending on the number the user enters
       if int(a) > 1:
         print('There are ' + a + ' pages in {}'.format(book))
       elif int(a) == 1:
@@ -56,24 +58,6 @@ def book_page_print ():
     else:
       print('INVALID. Please follow the instructions')
       book_page_print ()
-
-
-# main function - contains the menu 
-def main ():
-  quit = True 
-  print('what do you want to do?')
-  while quit == True:
-    menu = input('a) Add a book to the library database \n b) Print all book information \n c) Modify the pages in your chosen book \n d) print the amount of pages in your chosen book \n e) Quit \n')
-    if menu == 'a':
-      book_add()
-    elif menu == 'b':
-      book_info()
-    elif menu =='c':
-      book_pages()
-    elif menu == 'd':
-      book_page_print ()
-    elif menu == 'e':
-      quit == False
 
 # the dictionary contains all the information entered in the program about the books 
 books = {
@@ -85,10 +69,31 @@ books = {
   }
 }
 
-# run main function, which is running the menu 
-main()
+# main function - contains the menu 
 
-# this prints the author of the hunger games which is stored in the dictionary (books). 
-print(dictionary['Hunger Games']['author'])
+print('what do you want to do?')
+quit = True
+while quit == True:
+  menu = input('\n a) Add a book to the library database \n b) Print all book information \n c) Modify the pages in your chosen book \n d) print the amount of pages in your chosen book \n e) Quit \n')
+  if menu == 'a':
+    book_add()
+  elif menu == 'b':
+    book_info()
+  elif menu =='c':
+    book_pages()
+  elif menu == 'd':
+    book_page_print()
+  elif menu == 'e':
+    print('You have quit the program.')
+    quit = False
+  else:
+    print('please enter either: a, b, c, d or e')
+  
+    
+
+
+
+
+
 
 
