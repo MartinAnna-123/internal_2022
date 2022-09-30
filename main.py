@@ -47,15 +47,10 @@ def book_info():
   
 
 
-
-
-
-
-
-  
-
+    
+    
 # function for modifying number of pages of a book  - press C
-def book_pages():
+def modify_pages():
 
   # a while loop that will continue until the user enters a title of a book that is in the dictionary: books
   valid = False
@@ -74,7 +69,7 @@ def book_pages():
 
     except AttributeError:
 
-        print("Oops, the book you have entered is not in the system - try again")
+        print("The book title you have entered is not in the system \nHint: You may have spelt the title wrong. Check your spelling \nTry Again")
 
   # if statement adjusting the output depending on the number of pages the book title the user entered has (plural/singular)
   if int(bookChoicePages) > 1:
@@ -93,7 +88,7 @@ def book_pages():
   valid = False
   while valid == False:
 
-    newPages = input("what do you want to change the pages to? please enter a number")
+    newPages = input("what do you want to change the pages to? \nplease enter a number:")
     try:
 
       int(newPages)
@@ -211,7 +206,7 @@ while quit == True:
 
   elif menu =='c':
 
-    book_pages()
+    modify_pages()
 
     print('what do you want to do next?')
 
