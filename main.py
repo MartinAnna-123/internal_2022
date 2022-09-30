@@ -2,6 +2,7 @@
 def book_add():
   keys = ["author", "year", "genre", "pages"]
   title = input("Enter books title: ")
+  # the ___edited variables are just the users input that has had the first letters capitalized so the dictionary is consistent no matter what the user enters. 
   titleEdited = title.title()
   author = input ("Enter books author: ")
   authorEdited = author.title()
@@ -13,6 +14,7 @@ def book_add():
   data = dict(zip(keys,values))
   finaldata  = {titleEdited : data}
   print(finaldata)
+  # adds the information the user has entered into the dictionary that can be accessed from all functions so it ensures cohesion in program
   books.update(finaldata)
   
 
@@ -35,9 +37,15 @@ def book_pages():
       valid = True
     except AttributeError:
         print("Oops, the book you have entered is not in the system - try again")
+  # if statement adjusting the output depending on the number of pages the book title the user entered has (plural/singular)
+  if int(bookChoicePages) > 1:
+    print(bookChoiceEdited, "currently has", bookChoicePages, "Pages")
+  elif int(bookChoicePages) == 1:
+    print(bookChoiceEdited, "currently has", bookChoicePages, "Page")
+  else:
+    print(bookChoiceEdited, "currently has", bookChoicePages, "Pages")
   
-  print(bookChoiceEdited + ' currently has ' + bookChoicePages + ' pages')
-  # once the user has entered a title that is in the dictionary and automatically exited the previous loop they will enter this second loop which requires them to enter a new number of pages. This loop will continue looping if an integer is not added.
+  # once the user has entered a title that is in the dictionary(books) and automatically exited the previous loop they will enter this second loop which requires them to enter a new number of pages. This loop will continue looping if an integer is not added.
   valid = False
   while valid == False:
     newPages = input("what do you want to change the pages to? please enter a number")
@@ -49,7 +57,7 @@ def book_pages():
   # the new page number is replaces the old page number in the dictionary
   books[bookChoiceEdited]['pages'] = newPages
 
-  # if statement adjusting the output depending on the number the user enters
+  # if statement adjusting the output depending on the number the user enters(plural/singular)
   if int(newPages) > 1:
     print(bookChoiceEdited, "now has", newPages, "Pages")
   elif int(newPages) == 1:
