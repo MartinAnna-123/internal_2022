@@ -29,7 +29,7 @@ def book_add():
   # adds the information the user has entered into the dictionary that can be accessed from all functions so it ensures cohesion across the program
   books.update(finaldata)
 
-  # prints out the data the user has added 
+  # prints out the data the user has added in a user friendly format
   print(titleEdited)
   print("Author:", books[titleEdited]['author'], "\nYear:", books[titleEdited]['year'], "\nGenre:", books[titleEdited]['genre'], "\nPages:", books[titleEdited]['pages'],)
   
@@ -221,7 +221,6 @@ while quit == True:
     print('\nwhat do you want to do next?')
 
   elif menu == 'e':
-
     print('\nYou have quit the program.')
 
     # this will break the loop and the program will end
