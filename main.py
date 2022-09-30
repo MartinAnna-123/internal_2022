@@ -26,10 +26,14 @@ def book_add():
 
   finaldata  = {titleEdited : data}
 
-  print(finaldata)
-  
-  # adds the information the user has entered into the dictionary that can be accessed from all functions so it ensures cohesion in program
+  # adds the information the user has entered into the dictionary that can be accessed from all functions so it ensures cohesion across the program
   books.update(finaldata)
+
+  # prints out the data the user has added 
+  print(titleEdited)
+  print("Author:", books[titleEdited]['author'], "\nYear:", books[titleEdited]['year'], "\nGenre:", books[titleEdited]['genre'], "\nPages:", books[titleEdited]['pages'],)
+  
+
 
 
 
@@ -131,24 +135,24 @@ def book_page_print ():
   
   bookEdited = book.title()
 
-  valid = False 
-  while valid == False:
+  number = False 
+  while number == False:
     try:
 
-      a = books[str(bookEdited)]['pages']
+      pageTest = books[str(bookEdited)]['pages']
 
       # if statement adjusting the output depending on the number the user enters
-      if int(a) > 1:
+      if int(pageTest) > 1:
 
-        print('There are ' + a + ' pages in {}'.format(bookEdited))
+        print('There are ' + pageTest + ' pages in {}'.format(bookEdited))
 
-        valid = True
+        number = True
 
-      elif int(a) == 1:
+      elif int(pageTest) == 1:
 
-        print('There is ' + a + ' page in {}'.format(bookEdited))
+        print('There is ' + pageTest + ' page in {}'.format(bookEdited))
 
-        valid = True
+        number = True
       else:
 
         print('INVALID. Please follow the instructions')
@@ -196,29 +200,29 @@ while quit == True:
 
     book_add()
 
-    print('what do you want to do next?')
+    print('\nwhat do you want to do next?')
 
   elif menu == 'b':
 
     book_info()
 
-    print('what do you want to do next?')
+    print('\nwhat do you want to do next?')
 
   elif menu =='c':
 
     modify_pages()
 
-    print('what do you want to do next?')
+    print('\nwhat do you want to do next?')
 
   elif menu == 'd':
 
     book_page_print()
 
-    print('what do you want to do next?')
+    print('\nwhat do you want to do next?')
 
   elif menu == 'e':
 
-    print('You have quit the program.')
+    print('\nYou have quit the program.')
 
     # this will break the loop and the program will end
     quit = False
