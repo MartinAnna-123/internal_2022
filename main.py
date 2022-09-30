@@ -12,13 +12,40 @@ def book_add():
 
   authorEdited = author.title()
 
-  year = input ("Enter the books year of publishing: ")
+  valid = False
+  while valid == False:
+    
+    year = input ("Enter the books year of publishing: ")
+    
+    try:
+
+      int(year)
+
+      valid = True
+
+    except ValueError:
+
+      print("Oops, that was not an integer - try again")
 
   genre = input ("what genre is {}: ".format(title))
 
   genreEdited = genre.capitalize()
+  
+  valid = False
+  while valid == False:
+    
+    pages = input ("how many pages does {} have?: ".format(titleEdited))
+    
+    try:
 
-  pages = input ("how many pages does {} have?: ".format(titleEdited))
+      int(pages)
+
+      valid = True
+
+    except ValueError:
+
+      print("Oops, that was not an integer - try again")
+  
 
   values = [str(authorEdited), str(year), str(genreEdited), str(pages)]
 
